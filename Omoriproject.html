@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vs Aubrey</title>
+    <style>
+        .imgaubrey {
+            position: absolute;
+            margin-top: 63px;
+            margin-left: 590px;
+            z-index: 1;
+        }
+        .church {
+            z-index: -2;
+            margin-left: 450px;
+        }
+        body {
+            font-family: 'omori_game2regular';
+        }
+        @font-face {
+            font-family: 'omori_game2regular';
+            src: url('../coisas/omori_game-webfont.woff2') format('woff2'),
+                 url('../coisas/omori_game-webfont.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+        .fight {
+            height: 70px;
+            background-color: black;
+            color: white;
+            z-index: 3;
+            display: inline-block;
+            border: 2px solid white;
+            margin-left: 650px;
+            position: absolute;
+           margin-top: 2px;
+           text-align: center;
+        }
+        .e {
+            position: absolute;
+            z-index: 10;
+            height: 50px;
+            margin-left: -430px;
+            margin-top: 350px;
+            width: 200px;
+            transition: 0.5s;
+        }
+        .e:hover {
+            transform: scale(1.1);
+        }
+        .c {
+            z-index: -10;
+            height: 100px;
+            margin-left: -600px;
+            margin-bottom: 20px;
+            width: 110px;
+        border-radius: 10px;
+        }
+        .neutro {
+            position: absolute;
+    margin-top: 340px;
+    margin-left: -90px;
+    padding: 5px; 
+    background-color: black;
+    color: white;
+    z-index: 1;
+    display: inline-block;
+    border-radius: 5px;
+        }
+        .run {
+            position: absolute;
+            z-index: 10;
+            height: 50px;
+            margin-top: 405px;
+            margin-left: 60px;
+            width: 200px;
+            transition: 0.5s;
+        }
+        .run:hover {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+    <p class="fight">O que sunny e seus amigos irão fazer?</p>
+    <div class="container">
+        <img class="imgaubrey" src="coisas/aubrey1.gif" alt="Aubrey">
+        <img class="church" src="coisas/latest.jpg" alt="Church">
+        <a href="layout22.html">
+            <img class="e" id="button1" onclick="new Audio('coisas/OMORI OST - 060 It Means Everything (Extended Version [almost] 1 Hour).mp3').play();" src="coisas/buttonfight.png">
+        </a>
+        <img class="c"src="coisas/neutral-sunny-omori.gif">
+            <p class="neutro">Neutro</p>
+            <img class="run" onclick="new Audio('coisas/Stat Down  OMORI SFX.mp3').play();" src="coisas/Mercy.gif" alt="Run">
+            <script>
+                let ataque = 20;
+        function raiva() {
+            let mudartextoraiva = document.getElementById("raivinha");
+            mudartextoraiva.innerHTML = "Furioso"
+            ataque = ataque + 20;
+            let omorineutral = document.querySelector(".c");
+                    omorineutral.classList.toggle("omori-sunny");
+        }
+            </script>
+    </div>
+</body>
+</html>

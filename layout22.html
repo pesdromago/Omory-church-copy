@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vs Aubrey</title>
+    <style>
+        .imgaubrey {
+            position: absolute;
+            margin-top: 63px;
+            margin-left: 590px;
+            z-index: 1;
+        }
+        .church {
+            z-index: -2;
+            margin-left: 450px;
+        }
+        body {
+            font-family: 'omori_game2regular';
+        }
+        @font-face {
+            font-family: 'omori_game2regular';
+            src: url('../coisas/omori_game-webfont.woff2') format('woff2'),
+                 url('../coisas/omori_game-webfont.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+        .fight {
+            height: 70px;
+            background-color: black;
+            color: white;
+            z-index: 3;
+            display: inline-block;
+            border: 2px solid white;
+            margin-left: 650px;
+            position: absolute;
+            margin-top: 2px;
+            text-align: center;
+        }
+        .e {
+            position: absolute;
+            z-index: 10;
+            height: 50px;
+            margin-left: -430px;
+            margin-top: 350px;
+            width: 200px;
+            transition: 0.5s;
+        }
+        .e:hover {
+            transform: scale(1.1);
+        }
+        .c {
+            z-index: -10;
+            height: 100px;
+            margin-left: -600px;
+            margin-bottom: 20px;
+            width: 110px;
+            border-radius: 10px;
+        }
+        .neutro {
+            position: absolute;
+            margin-top: 340px;
+            margin-left: -85px;
+            padding: 5px; 
+            background-color: black;
+            color: white;
+            z-index: 1;
+            display: inline-block;
+            border-radius: 5px;
+        }
+        .options {
+            background-color: black;
+            height: 100px;
+            width: 250px;
+            z-index: 1;
+            position: absolute;
+            margin-left: 650px;
+            margin-top: -130px;
+        }
+        .atacar {
+            color: white;
+            margin-left: 20px;
+            margin-top: 10px;
+            background-color: none;
+            border: none;
+            background-color: transparent;
+            font-size: 25px;
+        }
+        .Raiva {
+            color: red;
+            border: none;
+            background-color: transparent;
+            font-size: 14px;
+            margin-top: 15px;
+        }
+        .barraomori {
+            background-color: green;
+            width: 100px;
+            margin-left: 502px;
+            position: absolute;
+            margin-top: -40px;
+            z-index: 1;
+            border: 3px solid red;
+            border-radius: 50px;
+        }
+        .cura1 {
+            color: green;
+            font-size: 20px;
+            margin-left: 670px;
+            position: absolute;
+            margin-top: -100px;
+            z-index: 1;
+            border: none;
+            background-color: transparent;
+        }
+    </style>
+</head>
+<body>
+    <p class="fight" onclick="new Audio('coisas/060-it-means-everything.mp3').play();">aperte aqui para começar a música</p>
+    <div class="container">
+        <img class="imgaubrey" src="coisas/aubrey1.gif" alt="Aubrey">
+        <img class="church" src="coisas/latest.jpg" alt="Church">
+        <a href="layout2.html"></a>
+        <img class="c" src="coisas/neutral-sunny-omori.gif">
+        <p class="neutro" id="raivinha">Neutro</p>
+        <div class="options">
+            <button onclick="atacar()" class="atacar">Atacar</button>
+            <button class="Raiva" onclick="Raiva()">Lembrar do passado</button>
+        </div>
+        <br>
+        <br>
+        <progress id="barraomori1" class="barraomori" value="100" max="100"></progress>
+        <button onclick="cura()" class="cura1">Salgadinho sonhozitos</button>
+    </div>
+    <script>
+        let barradevidaomori = document.getElementById("barraomori1");
+        let aubreyvidas = 500;
+        let raivaAtiva = false;
+        let textfight = document.querySelector(".fight");
+        
+        function Raiva() {
+            let omorineutral = document.querySelector(".c");
+            omorineutral.classList.add("coisas/omori-sunny.gif");
+            omorineutral.src = "coisas/omori-sunny.gif";
+            let textfight = document.querySelector(".fight");
+            textfight.innerHTML = "Aubrey bate em Sunny e ele fica furioso!"
+            barradevidaomori.value -= 40;
+            document.querySelector(".neutro").innerHTML = "Furioso"
+            vitoriatexto();
+            raivaAtiva = true;
+        return true;
+        }
+        function raiva() {
+            return true;
+        }
+        function vitoriatexto() {
+            if (aubreyvidas <= 0) {
+                let textfight = document.querySelector(".fight");
+        textfight.innerHTML = "Aubrey está sem vidas, você venceu!"
+        desabilitarbotao();
+        return true;
+            }
+            else if (barradevidaomori.value <= 0) {
+                let textfight = document.querySelector(".fight");
+        textfight.innerHTML = "Sunny está sem vidas, você perdeu!"
+        return true;
+        desabilitarbotao();
+            }
+            return false;
+        }
+        function desabilitarbotao() {
+            document.querySelector(".Raiva").disabled = true;
+            document.querySelector(".atacar").disabled = true;
+            document.querySelector(".cura1").disabled = true;
+        }
+        function atacar() {
+            if (vitoriatexto()) return;
+    if (vitoriatexto()) return;
+    aubreyvidas -= 30;
+    barradevidaomori.value -= 20;
+    let textfight = document.querySelector(".fight");
+    textfight.innerHTML = "Sunny ataca Aubrey! vidas de Aubrey: " + aubreyvidas;
+    vitoriatexto();
+    if (raivaAtiva) {
+        aubreyvidas -= 30;
+        barradevidaomori.value -= 15;
+        let textfight = document.querySelector(".fight");
+    textfight.innerHTML = "Sunny ataca furiosamente Aubrey! vidas de Aubrey: " + aubreyvidas;
+    vitoriatexto();
+    }
+}
+            function cura() {
+        barradevidaomori.value += 70;
+        let textfight = document.querySelector(".fight");
+        textfight.innerHTML = "Sunny come seu salgadinho preferido!"
+        vitoriatexto();
+    }
+vitoriatexto();
+    </script>
+</body>
+</html>
